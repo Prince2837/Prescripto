@@ -1,0 +1,10 @@
+/* eslint-disable */
+/* stylelint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable */
+/* eslint-enable */
+::-webkit-scrollbar{
+  @apply hidden
+}
