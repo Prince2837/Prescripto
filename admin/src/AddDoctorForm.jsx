@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { AdminContext } from "./AdminContext";
 
 const AddDoctorForm = () => {
+  const { backendUrl } = useContext(AdminContext);
+
   const [formData, setFormData] = useState({
     customId: "",
     name: "",
@@ -37,7 +40,8 @@ const AddDoctorForm = () => {
 
       formDataToSend.append("image", formData.image);
 
-      await axios.post("http://localhost:8080/api/doctors/add", formDataToSend, {
+      await axios.post(`${backendUrl}/api/doctors/add`, formDataToSend, {
+
         headers: { "Content-Type": "multipart/form-data" },
       });
 

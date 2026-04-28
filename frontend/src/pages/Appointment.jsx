@@ -27,8 +27,9 @@ const Appointment = () => {
 
   const fetchDocInfo = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/doctors/${docId}`);
+      const res = await axios.get(`${backendurl}/api/doctors/${docId}`);
       const doctorData = res.data;
+
 
       // ✅ Ensure slots_booked always exists
       if (!doctorData.slots_booked) {
@@ -171,7 +172,8 @@ const Appointment = () => {
               src={
                 docInfo.image?.trim().startsWith('http')
                   ? docInfo.image.trim()
-                  : `http://localhost:8080/${docInfo.image?.trim()}`
+                  : `${backendurl}/${docInfo.image?.trim()}`
+
               }
               alt={docInfo.name}
               onError={(e) => {

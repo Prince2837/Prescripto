@@ -9,15 +9,16 @@ const Doctors = () => {
   const [filterDoc, setFilterDoc] = useState([]);
   // const navigate = useNavigate();
 
-  // ✅ get adminToken from context
-  const { adminToken } = useContext(AdminContext);
+  // ✅ get adminToken and backendUrl from context
+  const { adminToken, backendUrl } = useContext(AdminContext);
 
   // Fetch doctors
   useEffect(() => {
-    axios.get('http://localhost:8080/api/doctors')
+    axios.get(`${backendUrl}/api/doctors`)
       .then((res) => setDoctors(res.data))
       .catch((err) => console.log("Error fetching doctors:", err));
-  }, []);
+  }, [backendUrl]);
+
 
   // Filter by speciality
   useEffect(() => {
@@ -47,7 +48,8 @@ const toggleAvailability = (index) => {
   // Send update to backend
   axios
     .patch(
-      `http://localhost:8080/api/doctor/doctors/${doctor._id}/availability`,
+      `${backendUrl}/api/doctor/doctors/${doctor._id}/availability`,
+
       { isAvailable: newStatus },
       {
         headers: {
@@ -93,7 +95,8 @@ const toggleAvailability = (index) => {
           {filterDoc.map((item, index) => {
             const imageUrl = item.image?.trim().startsWith("http")
               ? item.image.trim()
-              : `http://localhost:8080/${item.image?.trim()}`;
+              : `${backendUrl}/${item.image?.trim()}`;
+
 
             return (
               <div

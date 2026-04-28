@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 export const AdminContext = createContext();
 
 export const AdminProvider = ({ children }) => {
-  const backendUrl = "http://localhost:8080";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+
 
   const [adminToken, setAdminToken] = useState(localStorage.getItem("adminToken") || "");
   const [appointments, setAppointments] = useState([]);

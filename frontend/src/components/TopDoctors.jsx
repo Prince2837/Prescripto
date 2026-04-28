@@ -1,19 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const TopDoctors = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const { backendurl } = useContext(AppContext);
 
   const fetchDocInfo = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/allHoldings`);
+      const res = await axios.get(`${backendurl}/allHoldings`);
       setUsers(res.data);
     } catch (err) {
       console.error("Failed to fetch doctor info:", err);
     }
   };
+
 
   useEffect(() => {
     fetchDocInfo();
@@ -37,8 +40,9 @@ const TopDoctors = () => {
               src={
                 user.image?.startsWith("http")
                   ? user.image
-                  : `http://localhost:8080${user.image}`
+                  : `${backendurl}${user.image}`
               }
+
               alt={user.name}
               className="bg-blue-50 w-full h-[220px] object-cover"
               onError={(e) => {

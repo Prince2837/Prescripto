@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { AppContext } from '../context/AppContext';
 
 const Doctors = () => {
   const { speciality } = useParams();
   const [doctors, setDoctors] = useState([]);
   const [filterDoc, setFilterDoc] = useState([]);
   const navigate = useNavigate();
+  const { backendurl } = useContext(AppContext);
 
   // Fetch data from backend
   useEffect(() => {
-    axios.get('http://localhost:8080/api/doctors')
+    axios.get(`${backendurl}/api/doctors`)
       .then((res) => setDoctors(res.data))
       .catch((err) => console.log("Error fetching doctors:", err));
-  }, []);
+  }, [backendurl]);
+
 
   // Apply filter when doctors or speciality changes
   useEffect(() => {
@@ -47,7 +50,7 @@ const Doctors = () => {
             // 🌟 Compute correct image URL:
             const imageUrl = item.image?.trim().startsWith("http")
               ? item.image.trim()
-              : `http://localhost:8080/${item.image?.trim()}`;
+              : `${backendurl}/${item.image?.trim()}`;
 
             return (
               <div
