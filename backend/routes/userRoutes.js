@@ -18,5 +18,4 @@ userRouter.post('/payment-razorpay', authUser,paymentRazorpay)
 userRouter.post("/verifyRozarpay",authUser,verifyRazorpay)
 
 module.exports = userRouter;
-
-6
+

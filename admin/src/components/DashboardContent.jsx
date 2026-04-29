@@ -51,7 +51,7 @@ return dashData && (
         </div>
       </div>
     </div>
-    <div className='bg-white w-196  '>
+    <div className='bg-white w-full max-w-4xl'>
 
   <div className='flex items-center gap-2.5 px-4  py-4 mt-10 rounded-t border'>
     <img src={assets.list_icon} alt="" />

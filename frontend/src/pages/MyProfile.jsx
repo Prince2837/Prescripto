@@ -50,7 +50,7 @@ const MyProfile = () => {
   };
 
   return userData && (
-    <div className="pt-20 pl-20">
+    <div className="pt-10 md:pt-20 px-4 sm:px-10 md:px-20 max-w-2xl">
       {/* Profile Image */}
       <div className="flex items-center space-x-6">
         {isEditing ? (
@@ -103,15 +103,15 @@ const MyProfile = () => {
         )}
       </div>
 
-      <hr className="border-t border-gray-300 w-1/2 my-2 mt-4" />
+      <hr className="border-t border-gray-300 w-full sm:w-1/2 my-2 mt-4" />
 
       {/* Contact Information */}
       <div className="mt-6">
         <h3 className="text-sm text-gray-500 font-semibold mb-5">CONTACT INFORMATION</h3>
         <div className="space-y-2">
           <div className="flex">
-            <span className="w-24 text-sm">Email:</span>
-            <span className="text-sm text-blue-600">{userData.email}</span>
+            <span className="w-24 shrink-0 text-sm">Email:</span>
+            <span className="text-sm text-blue-600 break-all">{userData.email}</span>
           </div>
           <div className="flex">
             <span className="w-24 text-sm">Phone:</span>
@@ -128,7 +128,7 @@ const MyProfile = () => {
             )}
           </div>
           <div className="flex">
-            <span className="w-24 text-sm">Address:</span>
+            <span className="w-24 shrink-0 text-sm">Address:</span>
             {isEditing ? (
               <input
                 type="text"

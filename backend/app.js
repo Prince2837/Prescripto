@@ -171,8 +171,9 @@ mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("✅ MongoDB connected");
-    app.listen(8080, () => {
-      console.log("🚀 Server running at http://localhost:8080");
+    const port = process.env.PORT || 8080;
+    app.listen(port, () => {
+      console.log(`🚀 Server running at http://localhost:${port}`);
     });
   })
   .catch((err) => {

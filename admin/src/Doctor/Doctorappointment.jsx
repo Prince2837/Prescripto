@@ -29,8 +29,8 @@ const DoctorAppointments = () => {
     <div className='w-full max-w-6xl mx-auto p-5'>
       <p className='text-xl font-semibold mb-4'>All Appointments</p>
 
-      <div className='bg-white shadow-sm rounded-lg overflow-hidden'>
-        <div className='grid grid-cols-[0.5fr_2.5fr_1fr_1.5fr_2fr_1fr_1fr] bg-gray-100 text-gray-700 font-medium text-sm px-6 py-3'>
+      <div className='bg-white shadow-sm rounded-lg overflow-x-auto'>
+        <div className='grid grid-cols-[0.5fr_2.5fr_1fr_1.5fr_2fr_1fr_1fr] min-w-[800px] bg-gray-100 text-gray-700 font-medium text-sm px-6 py-3'>
           <p>#</p>
           <p>Patient</p>
           <p>Age</p>
@@ -51,7 +51,7 @@ const DoctorAppointments = () => {
           appointments.map((app, index) => (
             <div
               key={app._id}
-              className='grid grid-cols-[0.5fr_2.5fr_1fr_1.5fr_2fr_1fr_1fr] items-center text-sm border-t px-6 py-4'
+              className='grid grid-cols-[0.5fr_2.5fr_1fr_1.5fr_2fr_1fr_1fr] min-w-[800px] items-center text-sm border-t px-6 py-4'
             >
               <p>{index + 1}</p>
 

@@ -35,7 +35,7 @@ const {dToken} = useContext(DoctorContext)
         {!isAuthPage && <Navbar />}
         {!isAuthPage && <Slider />}
 
-        <main className={`${!isAuthPage ? 'pt-16 pl-60' : ''} w-full h-full overflow-y-auto bg-gray-50`}>
+        <main className={`${!isAuthPage ? 'pt-16 pl-16 md:pl-60' : ''} w-full h-full overflow-y-auto bg-gray-50 transition-all duration-300`}>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/admin-dashboard" element={

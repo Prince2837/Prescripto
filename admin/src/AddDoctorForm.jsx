@@ -67,7 +67,7 @@ const AddDoctorForm = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-8 border rounded-2xl shadow-md bg-white">
+    <div className="max-w-xl mx-4 sm:mx-auto mt-10 p-5 sm:p-8 border rounded-2xl shadow-md bg-white">
       <h2 className="text-2xl font-bold mb-6 text-center text-indigo-700">
         Add New Doctor
       </h2>

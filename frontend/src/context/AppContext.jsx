@@ -8,7 +8,7 @@ export const AppContext = createContext();
 
 // Provider component
 const AppContextProvider = (props) => {
-  const backendurl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+  const backendurl = (import.meta.env.VITE_BACKEND_URL || "http://localhost:8080").replace(/\/$/, "");
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [userData, setUserData] = useState(false);
 

@@ -28,16 +28,16 @@ const Doctors = () => {
   }, [doctors, speciality]);
 
   return (
-    <div>
-      <p className='text-gray-600 mt-5 ml-8'>Browse through the doctors specialist.</p>
-      <div className='flex flex-cols sm:flex-rows items-start gap-5 mt-5 ml-8'>
+    <div className="px-4 sm:px-10">
+      <p className='text-gray-600 mt-5'>Browse through the doctors specialist.</p>
+      <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
         {/* Filter Options */}
-        <div className='flex flex-col gap-4 text-sm text-gray-600'>
+        <div className='flex flex-col gap-4 text-sm text-gray-600 w-full sm:w-64 shrink-0'>
           {['General physician', 'Gynecologist', 'Dermatologist', 'Pediatricians', 'Neurologist', 'Gastroenterologist'].map((spec) => (
             <p
               key={spec}
               onClick={() => speciality === spec ? navigate('/doctors') : navigate(`/doctors/${spec}`)}
-              className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 cursor-pointer ${speciality === spec ? "bg-indigo-100 text-black" : ""}`}
+              className={`w-full py-2 px-4 border border-gray-300 rounded cursor-pointer transition-colors ${speciality === spec ? "bg-indigo-100 text-black font-medium" : "hover:bg-gray-50"}`}
             >
               {spec}
             </p>
@@ -45,7 +45,7 @@ const Doctors = () => {
         </div>
 
         {/* Doctor Cards */}
-        <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mr-5'>
+        <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
           {filterDoc.map((item, index) => {
             // 🌟 Compute correct image URL:
             const imageUrl = item.image?.trim().startsWith("http")

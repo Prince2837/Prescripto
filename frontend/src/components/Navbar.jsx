@@ -8,6 +8,7 @@ const Navbar = () => {
   const { token, setToken, userData } = useContext(AppContext);
 
   const [openUserMenu, setOpenUserMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const logout = () => {
     setToken('');
@@ -16,14 +17,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between px-10 py-3 border-b shadow-sm bg-white">
+    <nav className="flex items-center justify-between px-4 sm:px-10 py-3 border-b shadow-sm bg-white">
       {/* Left: Logo */}
       <div className="flex items-center space-x-4">
-        <img src={assets.logo} alt="Logo" className="h-10 w-auto" />
+        <img src={assets.logo} alt="Logo" className="h-8 sm:h-10 w-auto" />
       </div>
 
       {/* Center: Navigation Links */}
-      <div className="flex space-x-6 text-sm font-medium text-gray-800">
+      <div className="hidden md:flex space-x-6 text-sm font-medium text-gray-800">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -116,10 +117,26 @@ const Navbar = () => {
         {/* Admin/Doctor Portal Button */}
         <button
           onClick={() => (window.location.href = 'http://localhost:5174/')}
-          className="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded-full text-sm"
+          className="hidden sm:block bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded-full text-sm"
         >
           Admin/Doctor
         </button>
+        <img onClick={() => setShowMenu(true)} className='w-6 md:hidden cursor-pointer' src={assets.menu_icon} alt='' />
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`${showMenu ? 'fixed w-full' : 'h-0 w-0'} md:hidden right-0 top-0 bottom-0 z-50 overflow-hidden bg-white transition-all`}>
+        <div className='flex items-center justify-between px-5 py-6'>
+          <img className='h-8 w-auto' src={assets.logo} alt='' />
+          <img className='w-7 cursor-pointer' onClick={() => setShowMenu(false)} src={assets.cross_icon} alt='' />
+        </div>
+        <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium'>
+          <NavLink onClick={() => setShowMenu(false)} to='/'><p className='px-4 py-2 rounded inline-block hover:bg-gray-100'>HOME</p></NavLink>
+          <NavLink onClick={() => setShowMenu(false)} to='/doctors'><p className='px-4 py-2 rounded inline-block hover:bg-gray-100'>ALL DOCTORS</p></NavLink>
+          <NavLink onClick={() => setShowMenu(false)} to='/about'><p className='px-4 py-2 rounded inline-block hover:bg-gray-100'>ABOUT</p></NavLink>
+          <NavLink onClick={() => setShowMenu(false)} to='/contact'><p className='px-4 py-2 rounded inline-block hover:bg-gray-100'>CONTACT</p></NavLink>
+          <a href="http://localhost:5174/" className='px-4 py-2 rounded inline-block text-indigo-600 hover:bg-gray-100'>Admin/Doctor Portal</a>
+        </ul>
       </div>
     </nav>
   );

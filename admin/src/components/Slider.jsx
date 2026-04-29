@@ -5,7 +5,7 @@ import { AdminContext } from '../AdminContext';
 import { DoctorContext } from '../DoctorContext';
 
 const navLinkClass = ({ isActive }) =>
-  `flex items-center gap-2 py-2 px-3 rounded transition-all
+  `flex items-center gap-2 py-2 px-3 sm:px-3 sm:py-2 justify-center md:justify-start rounded transition-all
    ${isActive ? "bg-blue-200 text-black" : "hover:bg-blue-100 text-gray-700"}`;
 
 const Slider = () => {
@@ -13,35 +13,33 @@ const Slider = () => {
   const { dToken } = useContext(DoctorContext);
 
   return (
-    <aside className="w-60 bg-white border-r fixed top-16 left-0 h-[calc(100vh-4rem)] z-40">
+    <aside className="w-16 md:w-60 bg-white border-r fixed top-16 left-0 h-[calc(100vh-4rem)] z-40 overflow-x-hidden transition-all duration-300">
       {adminToken ? (
-        <nav className="flex flex-col gap-1 p-4">
-             <NavLink className={navLinkClass} to="/admin-dashboard">
-             <ClipboardList size={18} /> Dashboard
+        <nav className="flex flex-col gap-2 p-2 md:p-4">
+             <NavLink className={navLinkClass} to="/admin-dashboard" title="Dashboard">
+             <ClipboardList size={20} className="shrink-0" /> <span className="hidden md:block whitespace-nowrap">Dashboard</span>
              </NavLink>
-             <NavLink className={navLinkClass} to="/appointments">
-             <Calendar size={18} /> Appointments
+             <NavLink className={navLinkClass} to="/appointments" title="Appointments">
+             <Calendar size={20} className="shrink-0" /> <span className="hidden md:block whitespace-nowrap">Appointments</span>
              </NavLink>
-             <NavLink className={navLinkClass} to="/api/doctors/add">
-             <UserPlus size={18} /> Add Doctor
+             <NavLink className={navLinkClass} to="/api/doctors/add" title="Add Doctor">
+             <UserPlus size={20} className="shrink-0" /> <span className="hidden md:block whitespace-nowrap">Add Doctor</span>
              </NavLink>
-             <NavLink className={navLinkClass} to="/api/doctors" end>
-             <Users size={18} /> Doctors List
+             <NavLink className={navLinkClass} to="/api/doctors" end title="Doctors List">
+             <Users size={20} className="shrink-0" /> <span className="hidden md:block whitespace-nowrap">Doctors List</span>
              </NavLink>
         </nav>
       ) : dToken ? (
-        <nav className="flex flex-col gap-1 p-4">
-          <NavLink className={navLinkClass} to="/doctor-dashboard">
-             <ClipboardList size={18} /> Dashboard
+        <nav className="flex flex-col gap-2 p-2 md:p-4">
+          <NavLink className={navLinkClass} to="/doctor-dashboard" title="Dashboard">
+             <ClipboardList size={20} className="shrink-0" /> <span className="hidden md:block whitespace-nowrap">Dashboard</span>
              </NavLink>
-           <NavLink className={navLinkClass} to="/doctor-appointments">
-             <Calendar size={18} /> Appointments
+           <NavLink className={navLinkClass} to="/doctor-appointments" title="Appointments">
+             <Calendar size={20} className="shrink-0" /> <span className="hidden md:block whitespace-nowrap">Appointments</span>
              </NavLink>
-              <NavLink className={navLinkClass} to="/doctor-profile">
-             <Calendar size={18} /> Profile
+              <NavLink className={navLinkClass} to="/doctor-profile" title="Profile">
+             <Calendar size={20} className="shrink-0" /> <span className="hidden md:block whitespace-nowrap">Profile</span>
              </NavLink>
-
-          {/* You can add more doctor-only links here if needed */}
         </nav>
       ) : null}
     </aside>
